@@ -7,6 +7,7 @@ It has several features, including custom scrollbar and buttons for handling the
 
 The application is written in Typescript and vanilla Javascript.
 For reading the mp3 tags, I used the following library:
+
 `JS MediaTags` - https://www.npmjs.com/package/jsmediatags
 
 ### Global hotkeys
