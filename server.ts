@@ -1,5 +1,5 @@
 import { app } from './routes';
-import { client } from './src/Backend/postgreConnection';
+import { client } from './src/postgreConnection';
 
 const port: number = 8000;
 

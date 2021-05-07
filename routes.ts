@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { client } from './src/Backend/postgreConnection';
+import { client } from './src/postgreConnection';
 
 export const app = express();
 app.use('/lib', express.static('lib'));
