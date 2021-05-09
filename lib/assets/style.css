@@ -198,7 +198,7 @@ h3 {
 .cover {
   background-image: url('./img/music-placeholder.png');
   background-size: 100% 100%;
-  grid-area: 1 / 6 / 9 / 11;
+  grid-area: 1 / 6 / 8 / 11;
 }
 
 .left ul {
@@ -368,8 +368,9 @@ li.selected {
 .pop-up {
   z-index: 1;
   padding: 5%;
+  border: 1px solid var(--fox);
   border-radius: 5px;
-  background-color: var(--deeper);
+  background-color: var(--main);
   position: absolute;
   top: 50%;
   left: 50%;
