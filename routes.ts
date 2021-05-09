@@ -1,7 +1,5 @@
 import * as express from 'express';
 import { client } from './src/postgreConnection';
-import ITrackData from './src/BackendTS/ITrackData';
-import ITrackSQLRow from './src/BackendTS/ITraclSQLRow';
 import tagParser from './src/BackendTS/tagParser';
 
 export const app = express();
@@ -33,7 +31,7 @@ app.get('/api/tracklists', (req: express.Request, res: express.Response) => {
 //Get tracks
 app.get('/api/tracks/:list_id', (req: express.Request, res: express.Response) => {
   client.query(
-    'SELECT id, url, list_id, pic_url FROM tracks WHERE list_id = $1 AND is_deleted = false',
+    'SELECT id, url, list_id, pic_url, mother_id FROM tracks WHERE list_id = $1 AND is_deleted = false',
     [req.params.list_id],
     (err: Error, result) => {
       if (err) {
@@ -43,12 +41,23 @@ app.get('/api/tracks/:list_id', (req: express.Request, res: express.Response) =>
       if (result.rows.length === 0) {
         return res.status(404).send({ error: 'No available tracks in this playlist.' });
       }
-      Promise.all(result.rows.map((row) => tagParser(row))).then((result) => {
-        res.status(200).send(result);
-      }).catch((err)=> res.status(500).send({error: 'There was a problem with loading track data.'}));
-
+      Promise.all(result.rows.map((row) => tagParser(row)))
+        .then((result) => {
+          res.status(200).send(result);
+        })
+        .catch((err) => res.status(500).send({ error: 'There was a problem with loading track data.' }));
     }
   );
+});
+//Get favlist
+app.get('/api/favs', (req: express.Request, res: express.Response) => {
+  client.query('SELECT mother_id FROM tracks WHERE list_id = 2 AND is_deleted = false', (err: Error, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send({ error: 'Database error occured.' });
+    }
+    res.status(200).send(result.rows);
+  });
 });
 //Create tracklist
 app.post('/api/tracklists', (req: express.Request, res: express.Response) => {
@@ -76,8 +85,8 @@ app.post('/api/tracklists', (req: express.Request, res: express.Response) => {
 //Add tracks
 app.post('/api/tracks', (req: express.Request, res: express.Response) => {
   client.query(
-    'SELECT * FROM tracks WHERE title = $1 AND band = $2 AND list_id = $3',
-    [req.body.title, req.body.band, req.body.list_id],
+    'SELECT * FROM tracks WHERE mother_id = $1 AND list_id = $2',
+    [req.body.mother_id, req.body.list_id],
     (err: Error, result) => {
       if (err) {
         console.log(err);
@@ -101,7 +110,7 @@ app.post('/api/tracks', (req: express.Request, res: express.Response) => {
         }
       } else {
         client.query(
-          'INSERT INTO tracks (title, band, url, list_id, duration, pic_url)  VALUES($1, $2, $3, $4, $5, $6)',
+          'INSERT INTO tracks (url, list_id, pic_url, mother_id)  VALUES($1, $2, $3, $4)',
           [...Object.values(req.body)],
           (err: Error, result) => {
             if (err) {
