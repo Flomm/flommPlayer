@@ -1,5 +1,8 @@
 import * as express from 'express';
 import { client } from './src/postgreConnection';
+import ITrackData from './src/BackendTS/ITrackData';
+import ITrackSQLRow from './src/BackendTS/ITraclSQLRow';
+import tagParser from './src/BackendTS/tagParser';
 
 export const app = express();
 app.use('/lib', express.static('lib'));
@@ -28,10 +31,10 @@ app.get('/api/tracklists', (req: express.Request, res: express.Response) => {
   });
 });
 //Get tracks
-app.get('/api/tracks/:id', (req: express.Request, res: express.Response) => {
+app.get('/api/tracks/:list_id', (req: express.Request, res: express.Response) => {
   client.query(
-    'SELECT id, title, band, url, list_id, duration, pic_url FROM tracks WHERE list_id = $1 AND is_deleted = false',
-    [req.params.id],
+    'SELECT id, url, list_id, pic_url FROM tracks WHERE list_id = $1 AND is_deleted = false',
+    [req.params.list_id],
     (err: Error, result) => {
       if (err) {
         console.log(err);
@@ -40,7 +43,10 @@ app.get('/api/tracks/:id', (req: express.Request, res: express.Response) => {
       if (result.rows.length === 0) {
         return res.status(404).send({ error: 'No available tracks in this playlist.' });
       }
-      res.status(200).send(result.rows);
+      Promise.all(result.rows.map((row) => tagParser(row))).then((result) => {
+        res.status(200).send(result);
+      }).catch((err)=> res.status(500).send({error: 'There was a problem with loading track data.'}));
+
     }
   );
 });
