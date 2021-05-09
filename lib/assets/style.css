@@ -1,4 +1,7 @@
 :root {
+  --body: #fcf8f8;
+  --shadow: black;
+  --text: rgb(15, 14, 14);
   --main: rgb(231, 229, 227);
   --deep: rgb(153, 151, 148);
   --deeper: rgb(90, 88, 86);
@@ -10,6 +13,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color 0.4s ease;
 }
 
 html,
@@ -21,6 +25,8 @@ body {
 body {
   padding: 2% 10%;
   position: relative;
+  background-color: var(--body);
+  color: var(--text);
 }
 
 button,
@@ -36,14 +42,20 @@ li,
 .player,
 .pop-up,
 .pop-up form,
-.pop-up > div {
+.pop-up > div,
+.logo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+input,
+select,
 button {
   outline: none;
+}
+
+button {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -67,7 +79,6 @@ ul {
   list-style: none;
   position: relative;
   overflow: overlay;
-  color: rgb(15, 14, 14);
 }
 
 ul > article {
@@ -126,7 +137,7 @@ h3 {
 }
 
 .wrapper {
-  box-shadow: 0px 0px 10px 1px #000000;
+  box-shadow: 0px 0px 10px 1px var(--shadow);
   background-color: var(--main);
   height: 100%;
   width: 100%;
@@ -144,11 +155,11 @@ h3 {
 }
 
 .left {
-  border-right: 0.5px solid var(--deeper);
+  border-right: 0.5px solid var(--deep);
 }
 
 .right {
-  border-left: 0.5px solid var(--deeper);
+  border-left: 0.5px solid var(--deep);
 }
 /* Left side */
 .upper-left {
@@ -159,9 +170,13 @@ h3 {
 
 .logo {
   grid-area: 1 / 1 / 7 / 5;
-  background: var(--main) url('./img/icons/vinyl.svg');
   background-size: 100% 100%;
-  margin: 2%;
+}
+
+.logo > img {
+  width: 90%;
+  height: 90%;
+  color: var(--fox);
 }
 
 .toggle-holder {
@@ -194,7 +209,7 @@ h3 {
   padding: 2%;
   height: 10%;
   justify-content: space-between;
-  border-bottom: solid 1px var(--deeper);
+  border-bottom: solid 1px var(--deep);
 }
 
 .title span {
@@ -246,7 +261,7 @@ ul::-webkit-scrollbar-thumb {
 }
 
 .player-holder {
-  border-top: solid 1px var(--deeper);
+  border-top: solid 1px var(--deep);
   height: 10%;
   width: 100%;
 }
@@ -353,6 +368,7 @@ li.selected {
 .pop-up {
   z-index: 1;
   padding: 5%;
+  border-radius: 5px;
   background-color: var(--deeper);
   position: absolute;
   top: 50%;
@@ -367,9 +383,8 @@ li.selected {
   flex-direction: column;
 }
 
-input,
-select {
-  outline: none;
+.pop-up form * {
+  margin: 5% 0%;
 }
 
 select,
@@ -378,6 +393,11 @@ option {
   cursor: pointer;
   background-color: var(--fox);
   color: azure;
+}
+
+.pop-up input {
+  padding: 1%;
+  border-radius: 5px;
 }
 
 .pop-up > div {
@@ -425,7 +445,7 @@ option {
 }
 
 input:checked + .slider {
-  background-color: var(--deep);
+  background-color: var(--deeper);
 }
 
 input:checked + .slider:before {
