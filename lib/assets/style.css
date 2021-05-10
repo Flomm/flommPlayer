@@ -308,6 +308,22 @@ ul::-webkit-scrollbar-thumb {
   border-radius: 50%;
 }
 
+.pulse,
+.pulse:hover {
+  filter: invert(56%) sepia(93%) saturate(3437%) hue-rotate(125deg) brightness(101%) contrast(89%);
+  animation: glow 2s ease infinite;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 var(--fox);
+  }
+  100% {
+    box-shadow: 0 0 10px 8px transparent;
+    border-width: 2px;
+  }
+}
+
 .player .play {
   width: 75%;
   height: 50%;
@@ -323,28 +339,6 @@ ul::-webkit-scrollbar-thumb {
 
 li.selected {
   background-color: var(--fox);
-}
-
-.pulse {
-  transform: scale(1);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(7, 136, 82, 0.7);
-  }
-
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(18, 173, 101, 0.637);
-  }
-
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(24, 238, 156, 0.589);
-  }
 }
 
 .disabled {
