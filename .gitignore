@@ -2,3 +2,4 @@ package-lock.json
 tsconfig.json
 .vscode/
 node_modules/
+herokuSQL.sql
