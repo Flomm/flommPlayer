@@ -610,12 +610,12 @@ img.rotate {
   }
 
   .logo {
-    grid-area: 5 / 1 / 7 / 7;
+    grid-area: 5 / 1 / 7 / 6;
     background-size: 100% 100%;
   }
 
   .toggle-holder {
-    grid-area: 5 / 8 / 7 / 11;
+    grid-area: 5 / 7 / 7 / 11;
   }
 
   .playlist {
@@ -690,12 +690,6 @@ img.rotate {
     border-radius: 50%;
   }
 
-  .pulse,
-  .pulse:hover {
-    filter: invert(56%) sepia(93%) saturate(3437%) hue-rotate(125deg) brightness(101%) contrast(89%);
-    animation: glow 2s ease infinite;
-  }
-
   button.volume {
     width: 30%;
     height: 30%;
@@ -753,5 +747,16 @@ img.rotate {
 
   input[type='range']::-ms-fill-upper {
     box-shadow: 0.5px 0.5px 0.5px #000000, 0px 0px 0.5px #0d0d0d;
+  }
+
+  .switch-style {
+    width: 60px;
+    height: 34px;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
   }
 }
