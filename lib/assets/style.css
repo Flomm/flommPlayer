@@ -554,7 +554,7 @@ input[type='range']::-moz-range-track {
 
 input[type='range']::-moz-range-progress {
   height: 8.4px;
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 5px;
   background-color: var(--fox);
 }
 
@@ -575,10 +575,6 @@ input[type='range']::-ms-fill-lower {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 
-/* input[type='range']:focus::-ms-fill-lower {
-  background: var(--fox);
-} */
-
 input[type='range']::-ms-fill-upper {
   background: var(--fox);
   border: 0.2px solid #010101;
@@ -586,6 +582,23 @@ input[type='range']::-ms-fill-upper {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 
-/* input[type='range']:focus::-ms-fill-upper {
-  background: var(--fox);
-} */
+/* Rotation */
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+img.rotate {
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
