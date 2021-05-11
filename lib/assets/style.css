@@ -85,8 +85,9 @@ ul > article {
   width: 100%;
   background-color: var(--err);
   padding: 2%;
-  color: azure;
+  color: beige;
   text-align: center;
+  animation: expand 0.2s ease-in-out;
 }
 
 li {
@@ -357,6 +358,7 @@ li.selected {
   position: absolute;
   z-index: 1;
   top: 0;
+  animation: expand 0.2s;
 }
 
 .alert.error {
