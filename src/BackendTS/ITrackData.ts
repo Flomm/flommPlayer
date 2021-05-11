@@ -5,4 +5,5 @@ export default interface ITrackData {
   url: string;
   list_id: number;
   pic_url?: string;
+  duration: number;
 }
