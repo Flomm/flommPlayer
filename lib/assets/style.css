@@ -760,3 +760,22 @@ img.rotate {
     transform: translateX(26px);
   }
 }
+
+@media screen and (max-height: 600px) {
+  .heading {
+    display: none;
+  }
+  .upper-left {
+    display: none;
+  }
+  .upper {
+    height: 60%;
+  }
+  .player-holder {
+    height: 40%;
+  }
+  .left ul,
+  .right ul {
+    height: 100%;
+  }
+}
