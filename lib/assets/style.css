@@ -93,6 +93,7 @@ li {
   padding: 2%;
   justify-content: space-between;
   cursor: pointer;
+  animation: expand 0.3s ease-in;
 }
 
 li:nth-child(odd) {
@@ -366,6 +367,13 @@ li.selected {
   background-color: var(--fox);
 }
 
+@keyframes expand {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
 .pop-up {
   z-index: 1;
   padding: 5%;
@@ -377,6 +385,7 @@ li.selected {
   left: 50%;
   transform: translate(-50%, -50%);
   flex-direction: column;
+  animation: expand 0.3s ease-in-out;
 }
 
 .pop-up form {
