@@ -2,7 +2,9 @@
   "name": "flommplayer",
   "version": "1.0.0",
   "description": "Personal music player",
-  "repository": {"git": "https://github.com/Flomm/flommPlayer"},
+  "repository": {
+    "git": "https://github.com/Flomm/flommPlayer"
+  },
   "main": "app.js",
   "directories": {
     "lib": "lib"
