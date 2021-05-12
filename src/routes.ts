@@ -1,9 +1,10 @@
 import * as express from 'express';
-import { client } from './src/postgreConnection';
-import tagParser from './src/BackendTS/tagParser';
+import * as path from 'path';
+import { client } from './postgreConnection';
+import tagParser from './BackendTS/tagParser';
 
 export const app = express();
-app.use('/lib', express.static('lib'));
+app.use('/lib', express.static(path.join(path.resolve('lib'))));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/api', (req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -13,7 +14,7 @@ app.use('/api', (req: express.Request, res: express.Response, next: express.Next
 });
 
 app.get('/', (req: express.Request, res: express.Response) => {
-  res.status(200).sendFile(__dirname + '/index.html');
+  res.status(200).sendFile(path.resolve('index.html'));
 });
 //Get tls
 app.get('/api/tracklists', (req: express.Request, res: express.Response) => {
