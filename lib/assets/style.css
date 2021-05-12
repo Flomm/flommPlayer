@@ -129,6 +129,10 @@ h3 {
   color: var(--err);
 }
 
+.add-fav.fav {
+  cursor: default;
+}
+
 .add-fav.fav > .fas {
   color: var(--fox);
   pointer-events: none;
@@ -202,6 +206,7 @@ h3 {
   background-image: url('./img/covers/music-placeholder.png');
   background-size: 100% 100%;
   grid-area: 1 / 6 / 8 / 11;
+  transition: background-image 0.5s ease;
 }
 
 .left ul {
@@ -605,6 +610,12 @@ img.rotate {
 }
 
 /* Responsivness */
+@media screen and (max-width: 1100px) {
+  .cover {
+    grid-area: 2 / 6 / 7 / 11;
+  }
+}
+
 @media screen and (max-width: 850px) {
   body {
     padding: 0;
@@ -776,15 +787,19 @@ img.rotate {
   .heading {
     display: none;
   }
+
   .upper-left {
     display: none;
   }
+
   .upper {
     height: 60%;
   }
+
   .player-holder {
     height: 40%;
   }
+
   .left ul,
   .right ul {
     height: 100%;
