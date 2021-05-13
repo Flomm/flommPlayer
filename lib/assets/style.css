@@ -64,6 +64,7 @@ button {
   align-items: center;
   font-weight: bolder;
   color: var(--fox);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 button:hover,

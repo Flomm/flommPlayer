@@ -12,9 +12,13 @@ app.use('/api', (req: express.Request, res: express.Response, next: express.Next
   res.setHeader('Content-Type', 'application/json');
   next();
 });
-
+//Index
 app.get('/', (req: express.Request, res: express.Response) => {
   res.status(200).sendFile(path.resolve('index.html'));
+});
+//IE
+app.get('/ie', (req: express.Request, res: express.Response) => {
+  res.status(200).sendFile(path.resolve('ie.html'));
 });
 //Get tls
 app.get('/api/tracklists', (req: express.Request, res: express.Response) => {
