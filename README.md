@@ -1,5 +1,8 @@
 # Flomm player - personal audio player
 
+## Where to try?
+The project is deployed at: https://flommplayer.herokuapp.com/
+
 ## Introduction
 
 This webapp aims to mimic well-known audio players.
